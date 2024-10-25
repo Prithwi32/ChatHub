@@ -18,7 +18,7 @@ const server = app.listen("3000", () => {
 
 const io = socket(server, {
   cors: {
-    origin: "https://chatnest-gxu5.onrender.com/",
+    origin: "https://chatnest-gxu5.onrender.com",
     methods: ["GET", "POST"],
     credentials: true
   },
