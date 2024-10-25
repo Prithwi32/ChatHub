@@ -5,7 +5,7 @@ const socket = require("socket.io");
 
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://chatnest-gxu5.onrender.com",
     methods: ["GET", "POST"],
     credentials: true
   })
