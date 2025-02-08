@@ -5,7 +5,7 @@ import { toast, ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 let socket;
-const CONNECTION_PORT = "https://chatnest-backend-tnxl.onrender.com";
+const CONNECTION_PORT = "https://chathub-cr2h.onrender.com";
 
 function App() {
   // Before Login
