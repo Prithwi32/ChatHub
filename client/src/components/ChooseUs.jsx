@@ -13,7 +13,7 @@ export default function ChooseUs() {
         <>
             <div data-aos="fade-down" className="bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] text-black min-h-[600px] p-[3rem]">
                 <h3 data-aos="fade-down" className="text-center m-[3rem] underline text-[#EA6A49] text-4xl font-bold">User Benefits - Why Choose Us?</h3>
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-4 m-[1rem]">
+                <div className="grid grid-cols-1 lg:grid-cols-4 gap-4 m-[1.2rem]">
                     <div data-aos="fade-down" className="bg-white rounded-[2rem] p-[2rem] text-center">
                         <img className='m-auto w-[200px]' src={PrivacyImage} alt="Privacy" />
                         <h6 className="text-lg font-bold m-[1rem]">100% Privacy & Security:</h6>

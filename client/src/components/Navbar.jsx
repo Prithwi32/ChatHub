@@ -7,14 +7,12 @@ export default function Navbar() {
 
   return (
     <nav className="bg-white text-black shadow-lg fixed w-full z-10">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="flex justify-between h-16 items-center">
-          {/* Logo */}
           <Link to="/" className="text-2xl font-bold">
             ChatHub
           </Link>
 
-          {/* Desktop Menu */}
           <div className="hidden md:flex space-x-6">
             <NavItem to="/">Home</NavItem>
             <NavItem to="/features">Features</NavItem>
@@ -23,7 +21,6 @@ export default function Navbar() {
             <NavItem to="/cta">CTA</NavItem>
           </div>
 
-          {/* Mobile Menu Button */}
           <button
             className="md:hidden focus:outline-none"
             onClick={() => setIsOpen(!isOpen)}
@@ -35,7 +32,7 @@ export default function Navbar() {
 
       {/* Mobile Menu Dropdown */}
       {isOpen && (
-        <div className="md:hidden bg-[#4ABEBD]">
+        <div className="md:hidden bg-[#4ABEBD] text-center">
           <NavItem to="/" onClick={() => setIsOpen(false)}>Home</NavItem>
           <NavItem to="/features" onClick={() => setIsOpen(false)}>Features</NavItem>
           <NavItem to="/chooseus" onClick={() => setIsOpen(false)}>Choose US</NavItem>

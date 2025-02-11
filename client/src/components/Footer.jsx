@@ -19,7 +19,7 @@ export default function Footer() {
           </div>
         </div>
 
-        {/* Social Icons */}
+        
         <div className="flex gap-6">
           <a href="#" className="p-2 bg-[#4ABEBD] hover:bg-[#F07B5E] rounded-full m-auto">
             <FaFacebookF className=" w-5 h-5" />
@@ -34,7 +34,7 @@ export default function Footer() {
 
       </div>
 
-      {/* Copyright Section */}
+  
       <div className="text-center mt-10 text-[#4ABEBD]">
         &copy; {new Date().getFullYear()} ChatHub. All rights reserved.
       </div>

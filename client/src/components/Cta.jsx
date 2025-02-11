@@ -12,13 +12,13 @@ export default function CTA() {
         <>
             <div
                 data-aos="fade-up"
-                className="bg-white p-[3rem] border-4 shadow-lg rounded-[1rem] w-[50%] flex flex-col justify-center items-center m-auto "
+                className="bg-white md:p-[3rem] md:border-4 md:shadow-lg rounded-[1rem] md:w-[50%] flex flex-col justify-center items-center m-auto mb-[2rem] w-full border-0 shadow-none p-[1rem]"
             >
-                <h3 className="text-center m-[3rem] underline text-[#EA6A49] text-4xl font-bold">
+                <h3 className="text-center m-[3rem] mt-[5rem]  underline text-[#EA6A49] text-4xl font-bold">
                     Call-to-Action (CTA)
                 </h3>
                 <div
-                    className="bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] rounded-[2rem] p-[2rem] text-center"
+                    className="bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] mb-[8rem] rounded-[2rem] p-[2rem] text-center"
                     data-aos="fade-up"
                 >
                     <h6>
