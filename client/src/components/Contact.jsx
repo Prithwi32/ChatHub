@@ -27,12 +27,7 @@ export default function ContactForm() {
     setLoading(true);
 
     try {
-      await emailjs.send(
-        "service_cybr2dq",
-        "template_0fuohx7",
-        form,
-        "J2vLrVjilVKgayI5x"
-      );
+      await emailjs.send("service_id", "template_id", form, "service_id");
       await fetch("http://localhost:5000/api/users/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
