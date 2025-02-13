@@ -5,7 +5,6 @@
 // const upload = require("../middlewares/upload");
 // const router = express.Router();
 
-
 // const authenticateJwt = (req, res, next) => {
 //   const token = req.header("Authorization");
 //   if (!token) return res.status(401).json({ error: "Access denied" });
@@ -18,7 +17,6 @@
 //     res.status(400).json({ error: "Invalid token" });
 //   }
 // };
-
 
 // router.post("/register", async (req, res) => {
 //   const { username, email, password } = req.body;
@@ -76,12 +74,11 @@
 
 // module.exports = router;
 
-
-import express from 'express';
-import bcrypt from 'bcryptjs';
-import jwt from 'jsonwebtoken';
-import User from '../models/User.js';
-import upload from '../middleware/upload.js';
+import express from "express";
+import bcrypt from "bcryptjs";
+import jwt from "jsonwebtoken";
+import User from "../models/User.js";
+import upload from "../middleware/upload.js";
 
 const router = express.Router();
 
@@ -117,7 +114,9 @@ router.post("/login", async (req, res) => {
   const isMatch = await bcrypt.compare(password, user.password);
   if (!isMatch) return res.status(400).json({ error: "Invalid credentials" });
 
-  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, { expiresIn: "1h" });
+  const token = jwt.sign({ id: user._id }, process.env.JWT_SECRET, {
+    expiresIn: "1h",
+  });
   res.json({ token });
 });
 
@@ -140,16 +139,37 @@ router.put("/profile", authenticateJwt, async (req, res) => {
   res.json(updatedUser);
 });
 
-router.post("/profile/upload", authenticateJwt, upload.single("profilePicture"), async (req, res) => {
-  if (!req.file) return res.status(400).json({ error: "No file uploaded" });
+router.post(
+  "/profile/upload",
+  authenticateJwt,
+  upload.single("profilePicture"),
+  async (req, res) => {
+    if (!req.file) return res.status(400).json({ error: "No file uploaded" });
 
-  const updatedUser = await User.findByIdAndUpdate(
-    req.user.id,
-    { profilePicture: `/uploads/${req.file.filename}` },
-    { new: true }
-  ).select("-password");
+    const updatedUser = await User.findByIdAndUpdate(
+      req.user.id,
+      { profilePicture: `/uploads/${req.file.filename}` },
+      { new: true }
+    ).select("-password");
 
-  res.json(updatedUser);
+    res.json(updatedUser);
+  }
+);
+
+router.post("/contact", async (req, res) => {
+  try {
+    const { username, email, message } = req.body;
+    const messageCreate = await Contact.create({ username, email, message });
+    messageCreate.save();
+    res.json({
+      success: true,
+      data: messageCreate,
+    });
+  } catch (error) {
+    res.status(500).json({
+      msg: "Internal Server Error",
+    });
+  }
 });
 
 export default router;

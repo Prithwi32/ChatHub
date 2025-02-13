@@ -61,24 +61,28 @@
 //   });
 // });
 
-
-import dotenv from 'dotenv';
-import express from 'express';
-import mongoose from 'mongoose';
-import userRoutes from './routes/userRoutes.js';
-import cors from 'cors';
-import { Server } from 'socket.io';
+import dotenv from "dotenv";
+import express from "express";
+import mongoose from "mongoose";
+import userRoutes from "./routes/userRoutes.js";
+import cors from "cors";
+import { Server } from "socket.io";
 
 dotenv.config();
 const app = express();
 app.use(express.json());
 
 // Enable CORS for both frontend apps
-app.use(cors({
-  origin: ["https://chathub-frontend-en5a.onrender.com"],
-  methods: ["GET", "POST"],
-  credentials: true
-}));
+app.use(
+  cors({
+    origin: [
+      "https://chathub-frontend-en5a.onrender.com",
+      "http://localhost:5173",
+    ],
+    methods: ["GET", "POST"],
+    credentials: true,
+  })
+);
 
 // Serve static uploads
 app.use("/uploads", express.static("uploads"));
@@ -87,21 +91,27 @@ app.use("/uploads", express.static("uploads"));
 app.use("/api/users", userRoutes);
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGO_URI)
+mongoose
+  .connect(process.env.MONGO_URI)
   .then(() => console.log("MongoDB Connected"))
-  .catch(err => console.log(err));
+  .catch((err) => console.log(err));
 
 // Start Express Server
 const PORT = process.env.PORT || 5000;
-const server = app.listen(PORT, () => console.log(`Server running on port ${PORT}`));
+const server = app.listen(PORT, () =>
+  console.log(`Server running on port ${PORT}`)
+);
 
 // Setup Socket.io
 const io = new Server(server, {
   cors: {
-    origin: ["https://chathub-frontend-en5a.onrender.com", "https://chatnest-gxu5.onrender.com"],
+    origin: [
+      "https://chathub-frontend-en5a.onrender.com",
+      "https://chatnest-gxu5.onrender.com",
+    ],
     methods: ["GET", "POST"],
-    credentials: true
-  }
+    credentials: true,
+  },
 });
 
 // WebSocket Events
