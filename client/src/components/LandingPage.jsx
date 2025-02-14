@@ -18,16 +18,16 @@ export default function LandingPage() {
     <>
       <div
         data-aos="fade-up"
-        className="bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] min-h-[600px] flex items-center justify-center text-black flex-col md:flex-row"
+        className="bg-gradient-to-br from-gray-100 to-gray-300 dark:from-gray-800 dark:to-gray-700 min-h-[600px] flex items-center justify-center dark:text-white text-black flex-col md:flex-row"
       >
         <div
           data-aos="fade-right"
           className="md:w-[50%] p-[2rem] w-[90%] mt-[4rem] md:mt-[2rem] text-center md:text-left"
         >
-          <h1 className="text-4xl font-extrabold">
+          <h1 className="text-4xl font-extrabold dark:text-white">
             Seamless Chat, Anytime, Anywhere
           </h1>
-          <p className="text-lg mt-4">
+          <p className="text-lg mt-4 dark:text-gray-300">
             Stay connected with your friends, family, and colleagues in
             real-time with our secure and user-friendly chat platform.
             Experience fast, reliable, and private messaging like never before.
