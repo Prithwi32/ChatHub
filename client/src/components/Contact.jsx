@@ -7,6 +7,7 @@ import {
   Mail,
   FacebookIcon,
   Linkedin,
+
 } from "lucide-react";
 
 export default function ContactForm() {
@@ -22,7 +23,12 @@ export default function ContactForm() {
     setLoading(true);
 
     try {
-      await emailjs.send("service_id", "template_id", form, "service_id");
+      await emailjs.send(
+        import.meta.env.VITE_EMAILJS_SERVICE_ID,
+        import.meta.env.VITE_EMAILJS_TEMPLATE_ID,
+        form,
+        import.meta.env.VITE_EMAILJS_PUBLIC_KEY
+      );
       await fetch("http://localhost:5000/api/users/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
