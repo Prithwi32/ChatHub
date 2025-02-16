@@ -5,13 +5,8 @@ import {
   MapPin,
   Phone,
   Mail,
-  Facebook,
-  Twitter,
-  Linkedin,
   FacebookIcon,
-  TwitchIcon,
-  XIcon,
-  TwitterIcon,
+  Linkedin,
 } from "lucide-react";
 
 export default function ContactForm() {
@@ -45,16 +40,16 @@ export default function ContactForm() {
   };
 
   return (
-    <div className="min-h-screen bg-[#6366F1] p-4 lg:p-8 flex items-center justify-center">
-      <div className="mx-auto max-w-4xl rounded-3xl bg-white p-8 shadow-lg">
+    <div className="min-h-screen bg-[#6366F1] dark:bg-gray-900 p-4 lg:p-8 flex items-center justify-center">
+      <div className="mx-auto max-w-4xl rounded-3xl bg-white dark:bg-gray-800 p-8 shadow-lg">
         <div className="grid gap-8 lg:grid-cols-2">
           {/* left */}
           <div className="space-y-6">
             <div>
-              <h1 className="text-3xl font-bold text-[#6366F1]">
+              <h1 className="text-3xl font-bold text-[#6366F1] dark:text-white">
                 Get in Touch
               </h1>
-              <p className="text-gray-600">
+              <p className="text-gray-600 dark:text-gray-300">
                 We are here for you! How can we help?
               </p>
             </div>
@@ -65,7 +60,7 @@ export default function ContactForm() {
                 placeholder="Your Name"
                 value={form.username}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-gray-300 bg-gray-100 p-4"
+                className="w-full rounded-xl border border-gray-300 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 p-4"
                 required
               />
               <input
@@ -74,7 +69,7 @@ export default function ContactForm() {
                 placeholder="Your Email"
                 value={form.email}
                 onChange={handleChange}
-                className="w-full rounded-xl border border-gray-300 bg-gray-100 p-4"
+                className="w-full rounded-xl border border-gray-300 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 p-4"
                 required
               />
               <textarea
@@ -82,12 +77,12 @@ export default function ContactForm() {
                 placeholder="Go ahead, we are listening..."
                 value={form.message}
                 onChange={handleChange}
-                className="w-full min-h-[150px] rounded-xl border border-gray-300 bg-gray-100 p-4"
+                className="w-full min-h-[150px] rounded-xl border border-gray-300 bg-gray-100 dark:bg-gray-700 dark:border-gray-600 dark:text-gray-100 p-4"
                 required
               ></textarea>
               <button
                 type="submit"
-                className="w-full rounded-xl bg-[#6366F1] p-4 text-lg font-semibold text-white hover:bg-[#5457E5]"
+                className="w-full rounded-xl bg-[#6366F1] dark:bg-[#4F51C5] p-4 text-lg font-semibold text-white hover:bg-[#5457E5] dark:hover:bg-[#4345B0]"
                 disabled={loading}
               >
                 {loading ? "Sending..." : "Send"}
@@ -104,10 +99,10 @@ export default function ContactForm() {
               ].map(({ icon: Icon, text }, idx) => (
                 <div
                   key={idx}
-                  className="flex items-center gap-4 text-gray-600"
+                  className="flex items-center gap-4 text-gray-600 dark:text-gray-300"
                 >
-                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#6366F1]/10">
-                    <Icon className="h-5 w-5 text-[#6366F1]" />
+                  <div className="flex h-10 w-10 items-center justify-center rounded-full bg-[#6366F1]/10 dark:bg-gray-700">
+                    <Icon className="h-5 w-5 text-[#6366F1] dark:text-white" />
                   </div>
                   <span className="text-lg">{text}</span>
                 </div>
@@ -116,21 +111,21 @@ export default function ContactForm() {
             <div className="flex gap-4">
               <a
                 href=""
-                className="h-12 w-12 rounded-full border border-[#6366F1] text-[#6366F1] hover:bg-[#6366F1] hover:text-white flex items-center justify-center"
+                className="h-12 w-12 rounded-full border border-[#6366F1] dark:border-gray-600 text-[#6366F1] dark:text-gray-100 hover:bg-[#6366F1] dark:hover:bg-gray-600 hover:text-white flex items-center justify-center"
               >
                 <FacebookIcon className="h-5 w-5" />
               </a>
 
               <a
                 href=""
-                className="h-12 w-12 rounded-full border border-[#6366F1] text-[#6366F1] hover:bg-[#6366F1] hover:text-white flex items-center justify-center"
+                className="h-12 w-12 rounded-full border border-[#6366F1] dark:border-gray-600 text-[#6366F1] dark:text-gray-100 hover:bg-[#6366F1] dark:hover:bg-gray-600 hover:text-white flex items-center justify-center"
               >
                 <BsTwitterX className="h-5 w-5" />
               </a>
 
               <a
                 href=""
-                className="h-12 w-12 rounded-full border border-[#6366F1] text-[#6366F1] hover:bg-[#6366F1] hover:text-white flex items-center justify-center"
+                className="h-12 w-12 rounded-full border border-[#6366F1] dark:border-gray-600 text-[#6366F1] dark:text-gray-100 hover:bg-[#6366F1] dark:hover:bg-gray-600 hover:text-white flex items-center justify-center"
               >
                 <Linkedin className="h-5 w-5" />
               </a>
