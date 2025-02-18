@@ -8,6 +8,7 @@ import ChooseUs from "./components/ChooseUs";
 import AboutUs from "./components/AboutUs";
 import CTA from "./components/Cta";
 import ContactForm from "./components/Contact";
+import UserProfile from "./pages/UserProfile";
 
 export default function App() {
   return (
@@ -22,6 +23,7 @@ export default function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/cta" element={<CTA />} />
+        <Route path="/profile" element={<UserProfile />} />
       </Routes>
       <Footer />
     </>
