@@ -11,9 +11,9 @@ export default function Navbar() {
     <nav
       className={`${
         darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
-      } shadow-lg fixed w-full z-10 transition-all duration-300`}
+      } shadow-lg fixed w-full z-10`}
     >
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 ">
         <div className="flex justify-between h-16 items-center">
           <Link to="/" className="text-2xl font-bold">
             ChatHub
@@ -26,7 +26,7 @@ export default function Navbar() {
             <NavItem to="/about">About</NavItem>
             <NavItem to="/cta">CTA</NavItem>
 
-            {/* Dark Mode Toggle Button */}
+            {/* Added Dark Mode Button */}
             <button
               onClick={toggleDarkMode}
               className={`relative flex items-center justify-center gap-2 px-6 py-3 rounded-full text-white transition-all duration-500 ${
@@ -62,7 +62,7 @@ export default function Navbar() {
         <div
           className={`${
             darkMode ? "bg-gray-800 text-white" : "bg-[#4ABEBD] text-black"
-          } md:hidden text-center transition-all duration-500`}
+          } md:hidden text-center`}
         >
           <NavItem to="/" onClick={() => setIsOpen(false)}>
             Home
@@ -80,7 +80,7 @@ export default function Navbar() {
             CTA
           </NavItem>
 
-          {/* Mobile Dark Mode Button */}
+          {/* Stylized Dark Mode Button in Mobile */}
           <button
             onClick={toggleDarkMode}
             className={`relative flex items-center justify-center gap-2 px-6 py-3 rounded-full text-white transition-all duration-500 mt-4 ${
@@ -108,7 +108,7 @@ function NavItem({ to, children, onClick }) {
     <Link
       to={to}
       onClick={onClick}
-      className="block px-4 py-2 text-lg hover:bg-[#4ABEBD] rounded-full transition duration-300"
+      className="block px-4 py-2 text-lg hover:bg-[#4ABEBD] rounded-full transition"
     >
       {children}
     </Link>
