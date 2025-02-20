@@ -8,25 +8,25 @@ export default function Footer() {
 
         <div className="flex-1 grid grid-cols-2 gap-6">
           <div className="flex flex-col space-y-2">
-            <a href="#" className="hover:text-[#F07B5E] dark:hover:text-gray-300">
-              About Us
+            <a href="#" className="hover:cursor-default">
+              <span className="hover:text-[#F07B5E] dark:hover:text-gray-300 hover:cursor-pointer">About Us</span>
             </a>
-            <a href="#" className="hover:text-[#F07B5E] dark:hover:text-gray-300">
-              What We Do
+            <a href="#" className="hover:cursor-default">
+              <span className="hover:text-[#F07B5E] dark:hover:text-gray-300 hover:cursor-pointer">What We Do</span>
             </a>
-            <a href="#" className="hover:text-[#F07B5E] dark:hover:text-gray-300">
-              FAQ
+            <a href="#" className="hover:cursor-default">
+              <span className="hover:text-[#F07B5E] dark:hover:text-gray-300 hover:cursor-pointer">FAQ</span>   
             </a>
           </div>
           <div className="flex flex-col space-y-2">
-            <a href="#" className="hover:text-[#F07B5E] dark:hover:text-gray-300">
-              Career
+            <a href="#" className="hover:cursor-default">
+              <span className="hover:text-[#F07B5E] dark:hover:text-gray-300 hover:cursor-pointer">Career</span>  
             </a>
-            <a href="#" className="hover:text-[#F07B5E] dark:hover:text-gray-300">
-              Blog
+            <a href="#" className="hover:cursor-default">
+              <span className="hover:text-[#F07B5E] dark:hover:text-gray-300 hover:cursor-pointer">Blog</span> 
             </a>
-            <a href="/contact" className="hover:text-[#F07B5E] dark:hover:text-gray-300">
-              Contact Us
+            <a href="/contact" className="hover:cursor-default">
+              <span className="hover:text-[#F07B5E] dark:hover:text-gray-300 hover:cursor-pointer">Contact Us</span>
             </a>
           </div>
         </div>
