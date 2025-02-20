@@ -1,53 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/logo.jpg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Chat Room</title>
-    <!-- Tailwind CSS CDN -->
-    <link href="https://cdn.jsdelivr.net/npm/tailwindcss@2.2.19/dist/tailwind.min.css" rel="stylesheet" />
-    <!-- Lucide Icons CDN -->
-    <script src="https://cdn.jsdelivr.net/npm/lucide@0.0.114/dist/lucide.min.js"></script>
   </head>
-  <body class="bg-gray-100 font-sans antialiased">
-    <div class="flex justify-center items-center min-h-screen">
-      <div class="w-full max-w-2xl bg-white rounded-lg shadow-xl overflow-hidden">
-        <!-- Chat Header -->
-        <div class="flex items-center justify-between p-4 bg-indigo-600 text-white">
-          <h2 class="text-xl font-semibold">ChatHub</h2>
-          <button class="p-2 rounded-full hover:bg-indigo-700 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M12 4v16m8-8H4"></path>
-            </svg>
-          </button>
-        </div>
-
-        <!-- Messages Area -->
-        <div class="h-96 overflow-y-auto p-4 space-y-4">
-          <div class="flex items-start space-x-3">
-            <img src="https://via.placeholder.com/40" alt="Avatar" class="w-10 h-10 rounded-full">
-            <div class="bg-gray-200 text-gray-800 p-3 rounded-lg max-w-xs">
-              Hi there! How can I assist you today?
-            </div>
-          </div>
-          <div class="flex items-start space-x-3 justify-end">
-            <div class="bg-indigo-100 text-indigo-800 p-3 rounded-lg max-w-xs">
-              I need help with the new design layout.
-            </div>
-            <img src="https://via.placeholder.com/40" alt="Avatar" class="w-10 h-10 rounded-full">
-          </div>
-        </div>
-
-        <!-- Chat Input Area -->
-        <div class="flex items-center p-4 bg-gray-100 border-t">
-          <input type="text" placeholder="Type a message..." class="flex-grow p-2 rounded-lg border border-gray-300 mr-2 focus:outline-none focus:ring-2 focus:ring-indigo-600" />
-          <button class="p-2 rounded-full text-indigo-600 hover:bg-indigo-100 focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" stroke-width="2">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M5 15l7-7 7 7"></path>
-            </svg>
-          </button>
-        </div>
-      </div>
-    </div>
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
