@@ -16,7 +16,7 @@ export default function ChooseUs() {
     <>
       <div
         data-aos='fade-down'
-        className='flex flex-col justify-center align-middle items-center bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] dark:from-gray-800 dark:to-gray-700 dark:text-white min-h-[600px] p-[3rem]'
+        className='flex flex-col justify-center align-middle items-center bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] dark:from-gray-800 dark:to-gray-700 dark:text-white min-h-[600px] md:p-[3rem]'
       >
         <h3
           data-aos='fade-down'
@@ -95,33 +95,6 @@ export default function ChooseUs() {
             </motion.div>
           </motion.div>
         </motion.div>
-
-        {/* <div className='grid grid-cols-1 lg:grid-cols-4 gap-4 m-[1.2rem]'>
-          <div
-            data-aos='fade-down'
-            className='bg-white dark:bg-gray-900 dark:text-gray-200 rounded-[2rem] p-[2rem] text-center'
-          >
-
-          </div>
-          <div
-            data-aos='fade-up'
-            className='bg-white dark:bg-gray-900 dark:text-gray-200 rounded-[2rem] p-[2rem] text-center'
-          >
-
-          </div>
-          <div
-            data-aos='fade-down'
-            className='bg-white dark:bg-gray-900 dark:text-gray-200 rounded-[2rem] p-[2rem] text-center'
-          >
-
-          </div>
-          <div
-            data-aos='fade-up'
-            className='bg-white dark:bg-gray-900 dark:text-gray-200 rounded-[2rem] p-[2rem] text-center'
-          >
-
-          </div>
-        </div> */}
       </div>
     </>
   );

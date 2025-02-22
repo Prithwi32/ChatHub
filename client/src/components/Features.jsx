@@ -16,7 +16,7 @@ export default function Features() {
     <>
       <div
         data-aos='fade-up'
-        className='bg-white dark:bg-gray-900 min-h-[600px] p-[3rem] flex justify-center flex-col items-center align-middle'
+        className='bg-white dark:bg-gray-900 min-h-[600px] md:p-[3rem] flex justify-center flex-col items-center align-middle'
       >
         <h3
           data-aos='fade-up'
