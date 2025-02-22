@@ -2,6 +2,17 @@
 @tailwind components;
 @tailwind utilities;
 
+::-webkit-scrollbar{
+    width: 10px;
+}
+::-webkit-scrollbar:hover{
+  background-color: #BBDDCB;
+}
+::-webkit-scrollbar-thumb{
+    background-color: #4ABEBD;
+    border-radius: 10px;
+}
+
 /* Example: Custom styles for dark mode */
 body {
     @apply bg-white text-black;
