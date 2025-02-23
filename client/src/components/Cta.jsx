@@ -20,7 +20,7 @@ export default function CTA() {
           Call-to-Action (CTA)
         </h3>
         <div
-          className="bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] dark:from-gray-800 dark:to-gray-700 mb-[8rem] rounded-[2rem] p-[2rem] text-center"
+          className="bg-gradient-to-br from-[#C9E1CD] to-[#4ABEBD] dark:from-gray-800 dark:to-gray-700 mb-[2rem] rounded-[2rem] p-[2rem] text-center"
           data-aos="fade-up"
         >
           <h6 className="dark:text-gray-200">

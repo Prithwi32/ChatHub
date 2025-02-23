@@ -1,4 +1,4 @@
-import AboutUsImage from '../assets/images/About-Us.png';
+import AboutUsImage from '../assets/images/aboutus.png';
 import { useEffect } from 'react';
 import AOS from 'aos';
 import 'aos/dist/aos.css';
@@ -12,7 +12,7 @@ export default function AboutUs() {
     <>
       <div
         data-aos='fade-right'
-        className='bg-white dark:bg-gray-900 p-[3rem] flex flex-col justify-center items-center align-middle '
+        className='bg-white dark:bg-gray-900 flex flex-col justify-center items-center align-middle '
       >
         <h3
           data-aos='fade-up'
