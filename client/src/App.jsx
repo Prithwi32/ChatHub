@@ -11,6 +11,7 @@ import ContactForm from "./components/Contact";
 import UserProfile from "./pages/UserProfile";
 import { useState, useEffect } from "react";
 import LoadingBar from "react-top-loading-bar";
+import FAQ from "./pages/Faq";
 
 export default function App() {
   const [progress, setProgress] = useState(0);
@@ -39,6 +40,7 @@ export default function App() {
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactForm />} />
         <Route path="/cta" element={<CTA />} />
+        <Route path="/faq" element={<FAQ />} />
         <Route path="/profile" element={<UserProfile />} />
       </Routes>
       <Footer />
