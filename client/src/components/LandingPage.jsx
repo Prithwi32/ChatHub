@@ -63,7 +63,7 @@ export default function LandingPage() {
       <Features onClick={() => navigate("/features")} />
       <ChooseUs onClick={() => navigate("/chooseus")} />
       <AboutUs onClick={() => navigate("/about")} />
-
+      <CTA onClick={() => navigate("/cta")} />
       {showScroll && (
         <button
           onClick={scrollToTop}
