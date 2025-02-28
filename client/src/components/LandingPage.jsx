@@ -3,16 +3,32 @@ import Features from "./Features";
 import ChooseUs from "./ChooseUs";
 import GroupImage from "../assets/images/Group.png";
 import AboutUs from "./AboutUs";
-import CTA from "./Cta";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
 
 export default function LandingPage() {
   const navigate = useNavigate();
+  const [showScroll, setShowScroll] = useState(false);
+
   useEffect(() => {
     AOS.init({ duration: 1000, once: true });
+
+    const handleScroll = () => {
+      if (window.scrollY > 300) {
+        setShowScroll(true);
+      } else {
+        setShowScroll(false);
+      }
+    };
+
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
   }, []);
+
+  const scrollToTop = () => {
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  };
 
   return (
     <>
@@ -47,7 +63,15 @@ export default function LandingPage() {
       <Features onClick={() => navigate("/features")} />
       <ChooseUs onClick={() => navigate("/chooseus")} />
       <AboutUs onClick={() => navigate("/about")} />
-      <CTA onClick={() => navigate("/cta")} />
+
+      {showScroll && (
+        <button
+          onClick={scrollToTop}
+          className="fixed bottom-6 right-6 bg-[#EA6A49] text-white px-4 py-2 rounded-full shadow-lg hover:bg-[#fc9f88] transition duration-300"
+        >
+          &#8679;
+        </button>
+      )}
     </>
   );
 }
