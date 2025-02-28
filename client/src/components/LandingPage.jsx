@@ -3,6 +3,7 @@ import Features from "./Features";
 import ChooseUs from "./ChooseUs";
 import GroupImage from "../assets/images/Group.png";
 import AboutUs from "./AboutUs";
+import CTA from "./Cta";
 import { useEffect, useState } from "react";
 import AOS from "aos";
 import "aos/dist/aos.css";
