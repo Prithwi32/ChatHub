@@ -30,9 +30,16 @@ Welcome to **ChatHub**—a real-time, feature-rich chat application that makes s
 <img src="https://www.animatedimages.org/data/media/562/animated-line-image-0184.gif" width="1920" />
 
 <h2>Getting Started💥</h2>
+
+## Fork the repository
+![Screenshot 2025-02-22 233416](https://github.com/user-attachments/assets/e9ffa79c-ff37-49d1-a16c-602ccce6a4f2)
+
 ## Frontend Installation
 
 1. Clone the repository:
+
+   https://github.com/user-attachments/assets/fdeca780-adc3-4e2a-868e-f8ecd48bd49c
+   
 ```bash
       git clone https://github.com/<your-github-username>/ChatHub.git
 ```
@@ -54,10 +61,13 @@ Welcome to **ChatHub**—a real-time, feature-rich chat application that makes s
 6. Run the frontend application: 
   
       ```
-      npm start
+      npm run dev
       ```
   
 7. You can view the website in localhost: `http://localhost:5173`
+
+https://github.com/user-attachments/assets/656bc000-ab11-450b-8950-a80f68db0794
+
 
 ### Backend Installation
 
