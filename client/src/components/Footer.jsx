@@ -19,6 +19,7 @@ export default function Footer() {
             </a>
             <a onClick={() => navigate("/faq")} className="hover:text-[#F07B5E] dark:hover:text-gray-300 cursor-pointer">
               FAQ
+              </a>
             <a href="#" className="hover:cursor-default">
               <span className="hover:text-[#F07B5E] dark:hover:text-gray-300 hover:cursor-pointer">FAQ</span>   
 

@@ -12,8 +12,6 @@ export default function Navbar() {
       className={`${
         darkMode ? "bg-gray-800 text-white" : "bg-white text-black"
       } shadow-lg fixed w-full z-10 top-0`}
-        darkMode ? 'bg-gray-800 text-white' : 'bg-white text-black'
-      } shadow-lg fixed w-screen z-10`}
     >
       <div className='max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 '>
         <div className='flex justify-between h-16 items-center'>
