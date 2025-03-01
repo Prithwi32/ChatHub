@@ -26,6 +26,7 @@ export default function Navbar() {
             <NavItem to="/about">About</NavItem>
             <NavItem to="/contact">Contact Us</NavItem>
             <NavItem to="/cta">CTA</NavItem>
+            <NavItem to="/signup">Register</NavItem>
 
             {/* Added Dark Mode Button */}
             <button
@@ -79,6 +80,9 @@ export default function Navbar() {
           </NavItem>
           <NavItem to="/contact" onClick={() => setIsOpen(false)}>
             Contact Us
+          </NavItem>
+          <NavItem to="/signup" onClick={() => setIsOpen(false)}>
+            Register
           </NavItem>
           <NavItem to="/cta" onClick={() => setIsOpen(false)}>
             CTA
