@@ -194,12 +194,12 @@ function App() {
                     )}
                   </div>
 
-                  {/* Profile Image (for sender) */}
+                  {/* Profile Image (for sender)
                   {val.author === userName && (
                     <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-500 dark:border-blue-400">
                       <img src={val.avatar} alt="User Avatar" className="w-full h-full object-cover" />
                     </div>
-                  )}
+                  )} */}
                 </div>
               ))}
 
@@ -234,13 +234,17 @@ function App() {
                 </button>
 
                 {showEmojiPicker && (
-                  <div className="absolute bottom-12 left-0 z-50 shadow-lg rounded-lg">
-                    <EmojiPicker
-                      onEmojiClick={handleEmojiClick}
-                      theme="dark"
-                    />
+                  <div className="absolute bottom-14 left-1/2 transform -translate-x-1/2 z-50 shadow-lg rounded-lg bg-white dark:bg-gray-800 p-2">
+                    <div className="relative w-64 md:w-80">
+                      <EmojiPicker
+                        onEmojiClick={handleEmojiClick}
+                        theme="dark"
+                        style={{ width: "100%", maxHeight: "300px", overflowY: "auto" }}
+                      />
+                    </div>
                   </div>
                 )}
+
               </div>
 
               {/* Send Button */}
