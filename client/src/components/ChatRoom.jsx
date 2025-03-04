@@ -1,8 +1,7 @@
 import { useEffect, useState } from "react";
 import io from "socket.io-client";
-import { Handshake, Send, Paperclip, Smile, Circle } from "lucide-react";
+import { Handshake } from "lucide-react";
 import { toast, ToastContainer } from 'react-toastify';
-import EmojiPicker from "emoji-picker-react"; // ✅ Import emoji picker
 import 'react-toastify/dist/ReactToastify.css';
 import image from '../assets/images/chat.png'
 
@@ -13,38 +12,31 @@ function App() {
   const [isLoggedIn, setLoggedIn] = useState(false);
   const [room, setRoom] = useState("");
   const [userName, setUserName] = useState("");
-  const [avatar, setAvatar] = useState("");
 
   const [message, setMessage] = useState("");
   const [messageList, setMessageList] = useState([]);
-  const [typing, setTyping] = useState(false);
-  const [onlineUsers, setOnlineUsers] = useState([]);
-  const [showEmojiPicker, setShowEmojiPicker] = useState(false); // ✅ Toggle emoji picker
 
   useEffect(() => {
     socket = io(CONNECTION_PORT, {
       withCredentials: true,
     });
-
-    socket.on("receive_message", (data) => {
-      setMessageList((prevList) => [...prevList, data]);
-    });
-
-    socket.on("user_typing", (data) => {
-      setTyping(data.typing);
-    });
-
-    socket.on("update_users", (users) => {
-      setOnlineUsers(users);
-    });
-
     return () => {
       socket.disconnect();
     };
   }, []);
 
+  useEffect(() => {
+    socket.on("receive_message", (data) => {
+      setMessageList((prevList) => [...prevList, data]);
+    });
+
+    return () => {
+      socket.off("receive_message");
+    };
+  }, []);
+
   const connectToRoom = () => {
-    socket.emit("join_room", { room, userName, avatar });
+    socket.emit("join_room", room);
     setLoggedIn(true);
   };
 
@@ -55,54 +47,16 @@ function App() {
     }
 
     const messageContent = {
-      room,
+      room: room,
       content: {
         author: userName,
-        avatar,
-        message,
+        message: message,
       },
     };
 
     await socket.emit("send_message", messageContent);
     setMessageList((prevList) => [...prevList, messageContent.content]);
     setMessage("");
-  };
-
-  const handleTyping = () => {
-    socket.emit("typing", { room, typing: message.length > 0 });
-  };
-
-  // ✅ Handle file selection
-  const handleFileUpload = (e) => {
-    const file = e.target.files[0];
-    if (!file) return;
-
-    const fileURL = URL.createObjectURL(file);
-    const fileType = file.type.startsWith("image") ? "image" : file.type.startsWith("video") ? "video" : "file";
-
-    const fileMessage = {
-      room,
-      content: { author: userName, avatar, file: fileURL, fileType },
-    };
-
-    socket.emit("send_message", fileMessage);
-    setMessageList((prevList) => [...prevList, fileMessage.content]);
-  };
-
-
-  // ✅ Handle emoji selection
-  const addEmoji = (emojiObject) => {
-    setMessage((prev) => prev + emojiObject.emoji);
-    setShowEmojiPicker(false);
-  };
-
-  const handleEmojiClick = (emojiData) => {
-    setMessage((prevMessage) => prevMessage + emojiData.emoji); // Add emoji to message
-    setShowEmojiPicker(false); // Hide picker after selecting
-  };
-  
-  const toggleEmojiPicker = () => {
-    setShowEmojiPicker(!showEmojiPicker);
   };
 
   return (
@@ -155,14 +109,13 @@ function App() {
           </div>
         </div>
       ) : (
-        <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-500 to-purple-800 dark:from-gray-900 dark:to-black text-white p-4 mt-10">
-        
+        <div className="flex flex-col min-h-screen bg-gradient-to-br from-blue-500 to-purple-800 dark:from-gray-900 dark:to-black text-white p-4">
           {/* Header */}
-          <div className="flex items-center justify-between w-full h-20 bg-opacity-30 backdrop-blur-md shadow-lg rounded-lg px-6">
+          <div className="flex items-center justify-center w-full h-20 bg-opacity-30 backdrop-blur-md shadow-lg rounded-lg mb-4">
             <h1 className="text-2xl md:text-4xl font-extrabold tracking-wide text-white">
               Chat Room
             </h1>
-            <Handshake className="w-8 h-8 text-white" />
+            <Handshake className="ml-2 w-8 h-8 text-white" />
           </div>
 
           {/* Chat Box */}
@@ -171,45 +124,21 @@ function App() {
             {/* Messages Section */}
             <div className="flex-1 overflow-y-auto p-2 space-y-3">
               {messageList.map((val, key) => (
-                <div key={key} className={`flex items-center ${val.author === userName ? "justify-end" : "justify-start"}`}>
-                  
-                  {/* Profile Image */}
-                  {val.author !== userName && (
-                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-500 dark:border-blue-400">
-                      <img src={val.avatar} alt="User Avatar" className="w-full h-full object-cover" />
-                    </div>
-                  )}
-
-                  <div className={`p-3 max-w-xs md:max-w-sm rounded-lg flex items-center gap-2 ${
-                      val.author === userName
-                        ? "bg-blue-500 dark:bg-blue-600 text-white self-end"
-                        : "bg-gray-200 dark:bg-gray-700 text-black dark:text-white self-start"
-                    }`}
-                  >
-                    <strong>{val.author}</strong>: {val.message}
-                    {val.file && (
-                      <a href={val.file} target="_blank" rel="noopener noreferrer" className="text-blue-300 underline">
-                        {val.fileType === "image" ? "📷 Image" : val.fileType === "video" ? "🎥 Video" : "📄 File"}
-                      </a>
-                    )}
-                  </div>
-
-                  {/* Profile Image (for sender)
-                  {val.author === userName && (
-                    <div className="w-10 h-10 rounded-full overflow-hidden border-2 border-blue-500 dark:border-blue-400">
-                      <img src={val.avatar} alt="User Avatar" className="w-full h-full object-cover" />
-                    </div>
-                  )} */}
+                <div
+                  key={key}
+                  className={`p-3 max-w-xs md:max-w-sm rounded-lg ${
+                    val.author === userName
+                      ? "bg-blue-500 dark:bg-blue-600 text-white self-end"
+                      : "bg-gray-200 dark:bg-gray-700 text-black dark:text-white self-start"
+                  }`}
+                >
+                  <strong>{val.author}:</strong> {val.message}
                 </div>
               ))}
-
-              {/* Typing Status */}
-              {typing && <p className="text-gray-400 text-sm">Someone is typing...</p>}
             </div>
 
             {/* Input Field */}
-            <div className="relative flex gap-2 p-2 border-t border-gray-300 dark:border-gray-600">
-              {/* Message Input */}
+            <div className="flex gap-2 p-2 border-t border-gray-300 dark:border-gray-600">
               <input
                 type="text"
                 placeholder="Type a message..."
@@ -217,57 +146,13 @@ function App() {
                 onChange={(e) => setMessage(e.target.value)}
                 className="flex-1 p-2 rounded-lg border border-gray-300 dark:border-gray-600 bg-gray-100 dark:bg-gray-700 text-gray-800 dark:text-white placeholder-gray-600 dark:placeholder-gray-400 focus:ring-2 focus:ring-blue-500"
               />
-
-              {/* File Upload Button */}
-              <input type="file" id="file-upload" hidden onChange={handleFileUpload} />
-              <label htmlFor="file-upload" className="p-2 bg-gray-200 hover:bg-gray-300 text-black rounded-lg cursor-pointer">
-                <Paperclip />
-              </label>
-
-              {/* Emoji Picker Button with Dropdown */}
-              <div className="relative">
-                <button
-                  className="p-2 bg-yellow-300 hover:bg-yellow-400 text-black rounded-lg"
-                  onClick={toggleEmojiPicker}
-                >
-                  <Smile/>
-                </button>
-
-                {showEmojiPicker && (
-                  <div className="absolute bottom-14 left-1/2 transform -translate-x-1/2 z-50 shadow-lg rounded-lg bg-white dark:bg-gray-800 p-2">
-                    <div className="relative w-64 md:w-80">
-                      <EmojiPicker
-                        onEmojiClick={handleEmojiClick}
-                        theme="dark"
-                        style={{ width: "100%", maxHeight: "300px", overflowY: "auto" }}
-                      />
-                    </div>
-                  </div>
-                )}
-
-              </div>
-
-              {/* Send Button */}
               <button
                 onClick={sendMessage}
                 className="p-2 bg-green-500 hover:bg-green-600 text-white font-semibold rounded-lg transition duration-300"
               >
-                <Send className="w-5 h-5" />
+                Send
               </button>
             </div>
-          </div>
-
-          {/* Online Users */}
-          <div className="fixed bottom-4 left-4 bg-white dark:bg-gray-800 p-3 rounded-lg shadow-lg flex gap-2">
-            {onlineUsers.map((user, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <div className="w-8 h-8 rounded-full overflow-hidden border-2 border-green-500">
-                  <img src={user.avatar} alt="User Avatar" className="w-full h-full object-cover" />
-                </div>
-                <span className="text-gray-700 dark:text-white">{user.name}</span>
-                <Circle className="w-3 h-3 text-green-500" />
-              </div>
-            ))}
           </div>
         </div>
       )}
