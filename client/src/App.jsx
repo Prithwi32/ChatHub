@@ -12,6 +12,12 @@ import UserProfile from "./pages/UserProfile";
 import { useState, useEffect } from "react";
 import LoadingBar from "react-top-loading-bar";
 import FAQ from "./pages/Faq";
+import SignUp from "./components/Signup";
+import Login from "./components/Login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export const BASE_URL = "http://localhost:5000";
 
 export default function App() {
   const [progress, setProgress] = useState(0);
@@ -19,7 +25,8 @@ export default function App() {
   useEffect(() => {
     const handleScroll = () => {
       const scrollY = window.scrollY;
-      const documentHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const documentHeight =
+        document.documentElement.scrollHeight - window.innerHeight;
       const scrollProgress = (scrollY / documentHeight) * 100;
       setProgress(scrollProgress);
     };
@@ -30,6 +37,7 @@ export default function App() {
   return (
     // <Router>
     <>
+      <ToastContainer />
       <LoadingBar color="#55C1BE" progress={progress} height={4} />
       <Navbar />
       <Routes>
@@ -39,6 +47,8 @@ export default function App() {
         <Route path="/chooseus" element={<ChooseUs />} />
         <Route path="/about" element={<AboutUs />} />
         <Route path="/contact" element={<ContactForm />} />
+        <Route path="/signup" element={<SignUp />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/cta" element={<CTA />} />
         <Route path="/faq" element={<FAQ />} />
         <Route path="/profile" element={<UserProfile />} />
