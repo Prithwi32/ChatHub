@@ -1,11 +1,20 @@
 import { Link } from "react-router-dom";
-import { useState, useContext } from "react";
+import { useState, useContext, useEffect } from "react";
 import { Menu, X, Sun, Moon } from "lucide-react";
 import { ThemeContext } from "../context/ThemeContext"; // Import ThemeContext
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
   const { darkMode, toggleDarkMode } = useContext(ThemeContext); // Use ThemeContext
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // Check login status on component mount
+  useEffect(() => {
+    const user = localStorage.getItem("user"); // Assume 'user' is stored in localStorage after login
+    if (user) {
+      setIsLoggedIn(true);
+    }
+  }, []);
 
   return (
     <nav
@@ -26,6 +35,7 @@ export default function Navbar() {
             <NavItem to="/about">About</NavItem>
             <NavItem to="/contact">Contact Us</NavItem>
             <NavItem to="/cta">CTA</NavItem>
+            {!isLoggedIn && <NavItem to="/signup">Register</NavItem>}
 
             {/* Added Dark Mode Button */}
             <button
@@ -36,11 +46,6 @@ export default function Navbar() {
                   : "bg-[#4ABEBD] hover:bg-[#F07B5E]"
               } shadow-md transform hover:scale-105`}
             >
-              <div
-                className={`absolute inset-0 rounded-full bg-gradient-to-r from-[#4ABEBD] to-[#EA6A49] opacity-0 transition-opacity duration-700 ${
-                  isOpen ? "opacity-20" : "opacity-0"
-                }`}
-              ></div>
               {darkMode ? (
                 <Sun className="w-6 h-6 animate-spin-slow text-yellow-900" />
               ) : (
@@ -80,11 +85,16 @@ export default function Navbar() {
           <NavItem to="/contact" onClick={() => setIsOpen(false)}>
             Contact Us
           </NavItem>
+          {!isLoggedIn && (
+            <NavItem to="/signup" onClick={() => setIsOpen(false)}>
+              Register
+            </NavItem>
+          )}
           <NavItem to="/cta" onClick={() => setIsOpen(false)}>
             CTA
           </NavItem>
 
-          {/* Stylized Dark Mode Button in Mobile */}
+          {/* Dark Mode Button for Mobile */}
           <button
             onClick={toggleDarkMode}
             className={`relative flex items-center justify-center gap-2 px-6 py-3 rounded-full text-white transition-all duration-500 mt-4 ${

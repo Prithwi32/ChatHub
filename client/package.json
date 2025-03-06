@@ -13,7 +13,10 @@
     "@emailjs/browser": "^4.4.1",
     "aos": "^2.3.4",
     "axios": "^1.7.9",
+<<<<<<< HEAD
     "emoji-picker-react": "^4.12.0",
+=======
+>>>>>>> ae4fd9c52310e92ae3d81b3a2b137133fdcde76f
     "framer-motion": "^12.4.7",
     "lucide-react": "^0.453.0",
     "react": "^18.3.1",
