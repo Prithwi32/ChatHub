@@ -1,10 +1,11 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { Link } from "react-router-dom";
-
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../App";
 const Login = () => {
   const [formData, setFormData] = useState({ email: "", password: "" });
-  const [message, setMessage] = useState("");
   const navigate = useNavigate();
 
   const handleChange = (e) => {
@@ -13,10 +14,9 @@ const Login = () => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/login", {
+      const response = await fetch(`${BASE_URL}/api/users/login`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -24,14 +24,29 @@ const Login = () => {
 
       const data = await response.json();
       if (response.ok) {
-        localStorage.setItem("token", data.token);
-        setMessage("Login successful!");
-        navigate("/");
+        // Store user details and token in localStorage
+        localStorage.setItem(
+          "user",
+          JSON.stringify({ email: data.email, token: data.token })
+        );
+
+        toast.success("Login successful!", {
+          position: "top-center",
+          autoClose: 3000,
+        });
+
+        setTimeout(() => navigate("/"), 3000);
       } else {
-        setMessage(data.message || "Login failed.");
+        toast.error(data.message || "Login failed.", {
+          position: "top-center",
+          autoClose: 3000,
+        });
       }
     } catch (error) {
-      setMessage("Server error, please try again.");
+      toast.error("Server error, please try again.", {
+        position: "top-center",
+        autoClose: 3000,
+      });
     }
   };
 
@@ -39,7 +54,6 @@ const Login = () => {
     <div className="flex justify-center items-center h-screen bg-gradient-to-r from-[#C9E1CD] to-[#4ABEBD]">
       <div className="bg-white p-8 rounded-xl shadow-lg w-96">
         <h2 className="text-2xl font-bold text-gray-700 text-center">Login</h2>
-        {message && <p className="text-red-500 text-center mt-2">{message}</p>}
         <form onSubmit={handleSubmit} className="mt-4">
           <input
             type="email"

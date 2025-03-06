@@ -14,6 +14,10 @@ import LoadingBar from "react-top-loading-bar";
 import FAQ from "./pages/Faq";
 import SignUp from "./components/Signup";
 import Login from "./components/Login";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
+export const BASE_URL = "http://localhost:5000";
 
 export default function App() {
   const [progress, setProgress] = useState(0);
@@ -33,6 +37,7 @@ export default function App() {
   return (
     // <Router>
     <>
+      <ToastContainer />
       <LoadingBar color="#55C1BE" progress={progress} height={4} />
       <Navbar />
       <Routes>

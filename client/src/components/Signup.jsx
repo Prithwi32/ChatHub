@@ -1,5 +1,10 @@
 import { useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import { BASE_URL } from "../App";
+// Initialize toastify notifications
+
 const Signup = () => {
   const [formData, setFormData] = useState({
     username: "",
@@ -8,6 +13,7 @@ const Signup = () => {
   });
   const [message, setMessage] = useState("");
   const navigate = useNavigate();
+
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
   };
@@ -17,21 +23,29 @@ const Signup = () => {
     setMessage("");
 
     try {
-      const response = await fetch("http://localhost:5000/api/users/register", {
+      const response = await fetch(`${BASE_URL}/api/users/register`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
       });
 
       const data = await response.json();
+
       if (response.ok) {
-        setMessage("User registered successfully!");
-        navigate("/login");
+        // localStorage.setItem("user", JSON.stringify(data.user)); // Store user in localStorage
+        toast.success("Registration successful!", { position: "top-center" });
+        navigate("/login"); // Redirect after signup
       } else {
         setMessage(data.message || "Registration failed.");
+        toast.error(data.message || "Registration failed.", {
+          position: "top-center",
+        });
       }
     } catch (error) {
       setMessage("Server error, please try again.");
+      toast.error("Server error, please try again.", {
+        position: "top-center",
+      });
     }
   };
 
